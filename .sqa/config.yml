@@ -1,0 +1,76 @@
+config:
+  credentials: []
+  project_repos:
+    github.com/AI4EPS/QuakeFlow:
+      branch: main
+      repo: https://github.com/AI4EPS/QuakeFlow.git
+    github.com/EOSC-synergy/sqaaas-tooling:
+      branch: main
+      repo: https://github.com/EOSC-synergy/sqaaas-tooling
+environment:
+  JPL_DOCKERFORCEBUILD: enabled
+  JPL_KEEPGOING: enabled
+sqa_criteria:
+  QC.Acc:
+    repos:
+      github.com/AI4EPS/QuakeFlow git:
+        commands:
+        - /usr/bin/env sh .sqa/script.cozy-purple-chihuahua.sh
+        container: qc.acc_droopy-ruby-cichlid
+  QC.Doc:
+    repos:
+      github.com/AI4EPS/QuakeFlow find_doc_files.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.surly-saffron-orangutan.sh
+        container: qc.doc_lanky-asparagus-retriever
+      github.com/AI4EPS/QuakeFlow git:
+        commands:
+        - /usr/bin/env sh .sqa/script.shaggy-chestnut-gharial.sh
+        container: qc.doc_droopy-sapphire-bat
+      github.com/AI4EPS/QuakeFlow markdownlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.whiny-cardinal-angelfish.sh
+        container: qc.doc_lovely-razzmatazz-spider
+  QC.Lic:
+    repos:
+      github.com/AI4EPS/QuakeFlow licensee:
+        commands:
+        - /usr/bin/env sh .sqa/script.tasty-bistre-seal.sh
+        container: qc.lic_muggy-plum-zonkey
+  QC.Sec:
+    repos:
+      github.com/AI4EPS/QuakeFlow bandit:
+        commands:
+        - /usr/bin/env sh .sqa/script.stuffy-mauve-otter.sh
+        container: qc.sec_scaly-maroon-discus
+  QC.Sty:
+    repos:
+      github.com/AI4EPS/QuakeFlow flake8:
+        commands:
+        - /usr/bin/env sh .sqa/script.thirsty-eggplant-dugong.sh
+        container: qc.sty_skimpy-magnolia-slug
+      github.com/AI4EPS/QuakeFlow hadolint:
+        commands:
+        - /usr/bin/env sh .sqa/script.wimpy-heliotrope-opossum.sh
+        container: qc.sty_grumpy-red-lobster
+      github.com/AI4EPS/QuakeFlow jsonlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.tacky-crimson-lobster.sh
+        container: qc.sty_hilly-zucchini-toucan
+      github.com/AI4EPS/QuakeFlow oclint:
+        commands:
+        - /usr/bin/env sh .sqa/script.cheeky-olivine-scorpion.sh
+        container: qc.sty_skimpy-orchid-dachshund
+  QC.Uni:
+    repos:
+      github.com/AI4EPS/QuakeFlow pytest:
+        commands:
+        - /usr/bin/env sh .sqa/script.chummy-carmine-falcon.sh
+        container: qc.uni_shaggy-amaranth-dachshund
+  QC.Ver:
+    repos:
+      github.com/AI4EPS/QuakeFlow get_git_tags.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.flabby-platinum-oyster.sh
+        container: qc.ver_squeaky-wheat-booby
+timeout: 5400
